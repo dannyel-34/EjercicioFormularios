@@ -5,6 +5,11 @@
  */
 package View;
 
+import Controller.Validation;
+import Model.*;
+import Controller.*;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author salak406
@@ -14,8 +19,20 @@ public class Group extends javax.swing.JFrame {
     /**
      * Creates new form Group
      */
+    Menu m;
+    DefaultTableModel table;
+    Validation v;
+
     public Group() {
         initComponents();
+        this.setLocationRelativeTo(this);
+        m = new Menu();
+        v = new Validation();
+        table = new DefaultTableModel();
+        table.addColumn("Code");
+        table.addColumn("Names");
+        tblGroup.setModel(table);
+
     }
 
     /**
@@ -49,7 +66,7 @@ public class Group extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jComboBox4 = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblGroup = new javax.swing.JTable();
         btnInsert = new javax.swing.JButton();
         btnConsult = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
@@ -72,6 +89,12 @@ public class Group extends javax.swing.JFrame {
         jLabel2.setText("CODE: ");
 
         jLabel3.setText("-");
+
+        txtCodeGroup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodeGroupActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("NAME");
 
@@ -103,13 +126,13 @@ public class Group extends javax.swing.JFrame {
             }
         });
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---", "6:00 - 8:00", "8:00 - 10:00", "10:00 - 12:00", "12:00 - 14:00", "14:00 - 16:00", "16:00 - 18:00" }));
 
         jLabel9.setText("HOUR: ");
 
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---", "6:00 - 8:00", "8:00 - 10:00", "10:00 - 12:00", "12:00 - 14:00", "14:00 - 16:00", "16:00 - 18:00", " ", " ", " " }));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblGroup.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -128,7 +151,7 @@ public class Group extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tblGroup);
 
         btnInsert.setText("INSERT");
 
@@ -254,6 +277,10 @@ public class Group extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
+    private void txtCodeGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodeGroupActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodeGroupActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -311,8 +338,8 @@ public class Group extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTable tblGroup;
     private javax.swing.JTextField txtCode;
     private javax.swing.JTextField txtCodeGroup;
     private javax.swing.JTextField txtName;
