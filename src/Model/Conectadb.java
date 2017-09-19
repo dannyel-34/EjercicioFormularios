@@ -38,7 +38,7 @@ public class Conectadb {
             System.out.println("Conexión exitosa!");
         } catch (Exception ex) {
 
-            JOptionPane.showMessageDialog(null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage());
             System.out.printf(ex.getMessage());
         }
 
