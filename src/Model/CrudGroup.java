@@ -17,6 +17,8 @@ public class CrudGroup {
     
     Conexion c = new Conexion();
     
+    private String codeGroup, numberGroup, name, itemSchoolTime, itemBloc, classRoom, itemDay, itemradio, itemHour;
+    
     public void insertar(int code, int numcode, String name, String item1, String item2,
             int numroom, String itemrbs, String item3, String item4) throws SQLException {
         
@@ -43,4 +45,15 @@ public class CrudGroup {
             System.out.println(rs.getString("codigo") + "\t" + rs.getString("nombre"));
         }
     }
+    
+    public void read(int i) throws SQLException{
+        ResultSet rs = c.stm2.executeQuery("SELECT * FROM GRUPO WHERE CODIGO ='"+i+"'");
+        
+        while(rs.next()){
+            codeGroup = rs.getString("codigo");
+            numberGroup = rs.getString("numCodigo");
+            
+        }
+    }
+    
 }

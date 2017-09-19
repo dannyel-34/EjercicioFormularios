@@ -18,8 +18,6 @@ public class Conexion {
     PreparedStatement stm;
     Statement stm2;
 
-    private String codeGroup, numberGroup, name, itemSchoolTime, itemBloc, classRoom, itemDay, itemradio, itemHour;
-
     public void conexion() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -30,8 +28,4 @@ public class Conexion {
         }
     }
 
-    
-    
-    
-    
 }

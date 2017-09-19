@@ -29,6 +29,7 @@ public class Group extends javax.swing.JFrame {
     Validation v;
     Conexion c;
     CrudGroup crudGrp;
+
     public Group() {
         initComponents();
         this.setLocationRelativeTo(this);
@@ -76,7 +77,6 @@ public class Group extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblGroup = new javax.swing.JTable();
         btnInsert = new javax.swing.JButton();
-        btnConsult = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
@@ -188,8 +188,6 @@ public class Group extends javax.swing.JFrame {
             }
         });
 
-        btnConsult.setText("CONSULT");
-
         btnClose.setText("CLOSE");
         btnClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -258,7 +256,6 @@ public class Group extends javax.swing.JFrame {
                                             .addComponent(txtNamegroup, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(78, 78, 78)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnConsult, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -313,8 +310,7 @@ public class Group extends javax.swing.JFrame {
                             .addComponent(txtClassroom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(22, 22, 22)
                         .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnConsult, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(60, 60, 60)))
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
@@ -340,14 +336,13 @@ public class Group extends javax.swing.JFrame {
     }//GEN-LAST:event_txtnumbergroupActionPerformed
 
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
-        
-        
+
         Vector data = new Vector();
-        data.addElement(txtCode.getText().toLowerCase()+ "-"+txtnumbergroup.getText());//llamamos la clase vector y creamos el vector
+        data.addElement(txtCode.getText().toLowerCase() + "-" + txtnumbergroup.getText());//llamamos la clase vector y creamos el vector
         data.addElement(txtNamegroup.getText().toLowerCase());//change to lowercase(Convertmos el valo en minuscula)
         table.addRow(data);//insert the vector in the table
         tblGroup.setModel(table);//show table
-        
+
         txtCode.setText(null);
         txtnumbergroup.setText(null);
         txtNamegroup.setText(null);
@@ -356,11 +351,10 @@ public class Group extends javax.swing.JFrame {
         txtClassroom.setText(null);
         cbxDay.setSelectedIndex(0);
         cbxHour.setSelectedIndex(0);
-        
+
         txtCode.requestFocus();
-        
-        
-        
+
+
     }//GEN-LAST:event_btnInsertActionPerformed
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
@@ -383,8 +377,10 @@ public class Group extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNamegroupKeyTyped
 
     private void btnReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadActionPerformed
+        
         try {
-            crudGrp.imprimir();
+            int c = Integer.parseInt(JOptionPane.showInputDialog(null, "Consultar Codigo: ", "Consultar", JOptionPane.INFORMATION_MESSAGE));
+            crudGrp.read(c);
         } catch (SQLException ex) {
             java.util.logging.Logger.getLogger(Group.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -427,7 +423,6 @@ public class Group extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
-    private javax.swing.JButton btnConsult;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnInsert;
     private javax.swing.JButton btnRead;
