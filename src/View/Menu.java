@@ -16,7 +16,7 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
-        
+        this.setLocationRelativeTo(this);
     }
 
     /**
@@ -37,7 +37,7 @@ public class Menu extends javax.swing.JFrame {
         jCheckBoxMenuItem2 = new javax.swing.JCheckBoxMenuItem();
         jCheckBoxMenuItem3 = new javax.swing.JCheckBoxMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        jCheckBoxMenuItem4 = new javax.swing.JCheckBoxMenuItem();
+        miExit = new javax.swing.JCheckBoxMenuItem();
         jMenu3 = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
@@ -74,9 +74,14 @@ public class Menu extends javax.swing.JFrame {
         jMenu2.add(jCheckBoxMenuItem3);
         jMenu2.add(jSeparator1);
 
-        jCheckBoxMenuItem4.setSelected(true);
-        jCheckBoxMenuItem4.setText("Exit");
-        jMenu2.add(jCheckBoxMenuItem4);
+        miExit.setSelected(true);
+        miExit.setText("Exit");
+        miExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miExitActionPerformed(evt);
+            }
+        });
+        jMenu2.add(miExit);
 
         jMenuBar1.add(jMenu2);
 
@@ -105,8 +110,12 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_migroupActionPerformed
 
     private void jCheckBoxMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem2ActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_jCheckBoxMenuItem2ActionPerformed
+
+    private void miExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miExitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_miExitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -146,7 +155,6 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem3;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -154,6 +162,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JCheckBoxMenuItem miExit;
     private javax.swing.JCheckBoxMenuItem migroup;
     // End of variables declaration//GEN-END:variables
 }

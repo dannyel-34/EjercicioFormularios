@@ -6,7 +6,7 @@
 package Model;
 
 
-import java.sql.SQLException;
+import java.sql.*;
 import javax.swing.JOptionPane;
 
 /**
@@ -32,5 +32,15 @@ public class CrudGroup {
         c.stm.setString(7, item4);
         c.stm.execute();
         JOptionPane.showMessageDialog(null, "Los datos fueron guardados con éxito!");
+    }
+    
+    public void imprimir() throws SQLException{
+        c.stm2 = c.conexion.createStatement();
+        ResultSet rs = c.stm2.executeQuery("SELECT codigo, nombre FROM GRUPO");
+        System.out.println("Codigo \t nombre");
+        
+        while(rs.next()){
+            System.out.println(rs.getString("codigo") + "\t" + rs.getString("nombre"));
+        }
     }
 }
