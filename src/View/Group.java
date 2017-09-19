@@ -27,7 +27,7 @@ public class Group extends javax.swing.JFrame {
     Menu m;
     DefaultTableModel table;
     Validation v;
-    Conexion c;
+    Conectadb c;
     CrudGroup crudGrp;
 
     public Group() {
@@ -35,7 +35,7 @@ public class Group extends javax.swing.JFrame {
         this.setLocationRelativeTo(this);
         m = new Menu();
         v = new Validation();
-        c = new Conexion();
+        c = new Conectadb();
         crudGrp = new CrudGroup();
         table = new DefaultTableModel();
         table.addColumn("Code");
