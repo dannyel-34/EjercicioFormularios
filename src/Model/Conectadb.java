@@ -15,31 +15,22 @@ import javax.swing.*;
  */
 public class Conectadb {
 
-    //nombre de la base de datos
-    public String db = "dbExample";
-
-    //URL del driver
-    public String url = "jdbc:mysql://localhost/" + db;
-
-    //user de la bd
-    public String user = "root";
-
-    //pass del user de la bd
-    public String pass = "123";
+    Connection link = null;
 
     public Connection Conectar() {
 
-        Connection link = null;
-
         try {
 
-            Class.forName("com.mysql.jdbc.Driver");
-            link = DriverManager.getConnection(this.url, this.user, this.pass);
+            //Cargamos el Driver de MySQL
+            Class.forName("org.gjt.mm.mysql.Driver");
+            //Localhost: es la ubicacion de la base de datos,
+            //db es el nombre de la base de datos en la cual hacemos conexion
+            link = DriverManager.getConnection("jdbc:mysql://localhost/dbExample", "root", "");
+            //JOptionPane.showMessageDialog(null, "Conexion Exitosa!");
             System.out.println("Conexión exitosa!");
         } catch (Exception ex) {
-
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-            System.out.printf(ex.getMessage());
+            //JOptionPane.showMessageDialog(null, "No se puedo conectar ala base de datos", "Error"+ex.getMessage(), JOptionPane.ERROR_MESSAGE);
+            System.out.printf("No se pudo conectar ala base de datos" +ex.getMessage());
         }
 
         return link;

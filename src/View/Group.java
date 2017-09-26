@@ -5,14 +5,15 @@
  */
 package View;
 
-import Controller.Validation;
+import com.mysql.jdbc.PreparedStatement;
+import com.mysql.jdbc.Statement;
+import java.sql.*;
 import Model.*;
 import Controller.*;
-import com.sun.istack.internal.logging.Logger;
-import java.sql.SQLException;
 import java.util.Vector;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
+
 import java.util.logging.Level;
 
 /**
@@ -29,13 +30,16 @@ public class Group extends javax.swing.JFrame {
     Validation v;
     Conectadb c;
     CrudGroup crudGrp;
-
+    Conectadb con;
+    
     public Group() {
         initComponents();
         this.setLocationRelativeTo(this);
         m = new Menu();
         v = new Validation();
         c = new Conectadb();
+        con = new Conectadb();
+        con.Conectar();
         crudGrp = new CrudGroup();
         table = new DefaultTableModel();
         table.addColumn("Code");
@@ -135,6 +139,12 @@ public class Group extends javax.swing.JFrame {
         cbxbloc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---", "K", "M", "N", "L" }));
 
         jLabel7.setText("-");
+
+        txtClassroom.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtClassroomKeyTyped(evt);
+            }
+        });
 
         jLabel8.setText("DAY");
 
@@ -255,14 +265,14 @@ public class Group extends javax.swing.JFrame {
                                                 .addComponent(txtnumbergroup, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addComponent(txtNamegroup, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(78, 78, 78)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnRead, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabel9))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(50, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -311,13 +321,13 @@ public class Group extends javax.swing.JFrame {
                         .addGap(22, 22, 22)
                         .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(60, 60, 60)))
-                .addGap(23, 23, 23)
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(cbxHour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
@@ -365,7 +375,7 @@ public class Group extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCloseActionPerformed
 
     private void txtCodeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodeKeyTyped
-        v.solotexto(evt.getKeyChar(), evt);
+        v.validarCodigo(evt.getKeyChar(), evt, txtCode.getText().length());
     }//GEN-LAST:event_txtCodeKeyTyped
 
     private void txtnumbergroupKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnumbergroupKeyTyped
@@ -385,6 +395,11 @@ public class Group extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Group.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnReadActionPerformed
+
+    private void txtClassroomKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClassroomKeyTyped
+        v.validarNumAula(evt.getKeyChar(), evt, txtClassroom.getText().length());
+        
+    }//GEN-LAST:event_txtClassroomKeyTyped
 
     /**
      * @param args the command line arguments
